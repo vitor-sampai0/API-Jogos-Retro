@@ -27,10 +27,10 @@ class AuthController {
           return res.status(400).json({ error: "Este Email já está em uso" });
         }
       // Verifica se o NickName já existe
-        // const userNicknameExist = await userModel.findByNickname(email);
-        // if (userNicknameExist) {
-        //   return res.status(400).json({ error: "Este Nickname já está em uso" });
-        // }
+        const userNicknameExist = await userModel.findByNickname(nickname);
+        if (userNicknameExist) {
+          return res.status(400).json({ error: "Este Nickname já está em uso" });
+        }
         //hash a senha
         const hashedPassword = await bcrypt.hash(password, 10);
 
