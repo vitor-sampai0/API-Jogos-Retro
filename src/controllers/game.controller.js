@@ -2,8 +2,12 @@ import GameModel from "../models/game.model.js";
 
 class GameController {
   async finAll(req, res) {
+    const {name, platform} = req.query;
+    // console.log("nome", name);
+    // console.log("plataforma", platform);
+
     try {
-      const games = await GameModel.findAll();
+      const games = await GameModel.findAll(name, platform);
 
       return res.status(200).json(games);
     } catch (error) {
